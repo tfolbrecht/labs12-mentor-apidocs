@@ -1,0 +1,359 @@
+---
+weight: 14
+title: Backend
+---
+
+# Backend API
+
+## index
+
+### [auth](/#auth)
+
+Authentication
+
+### [experiences](/#experiences)
+
+### [invitations](/#invitations)
+
+invitation related endpoints
+
+### [matches](/#matches)
+
+Match related endpoints
+
+### [meetings](/#meetings)
+
+Meeting related endpoints
+
+### [mentees](/#mentees)
+
+Mentee related endpoints
+
+### [mentors](/#mentors)
+
+Mentor related endpoints
+
+### [notifications](/#notifications)
+
+User notifcations
+
+### [organizations](/#organizations)
+
+Organization related endpoints
+
+### [users](/#users)
+
+User related endpoints
+
+---
+
+## auth
+
+### /api/auth/login
+
+#### POST ROUTE /api/auth/login
+
+- should return 200 on success
+- should return 404 on fail (no user found)
+- should return 400 on fail (no email)
+- should return 400 on fail (no password)
+- should return 401 on fail (wrong password)
+- should return a token on success
+- should return an error on fail (no user found)
+- should return an error on fail (wrong password)
+- should return an error on fail (no email)
+- should return an error on fail (no password)
+
+### /api/auth/register
+
+#### POST ROUTE api/auth/register
+
+- should return 201 on success
+- should return a message on success
+- should return 400 on fail (no organization name
+- should return 400 on fail (no email)
+- should return 400 on fail (no password)
+- should return message on fail (no organization name)
+- should return message on fail (no email)
+- should return message on fail (no password)
+- should return 500 on fail (user or organization already registered)
+- should return message on fail (user or organization already registered)
+
+### /api/auth/github
+
+UNDEF
+
+### /api/auth/github/callback
+
+UNDEF
+
+## experiences
+
+- /api/experiences/
+- /api/experiences/:id
+- /api/experiences/:id/remove
+
+
+## invitations
+
+- /api/invitations/
+- /api/invitations/:invitation_id
+- /api/invitations/:invitation_id/github
+- /api/invitations/:invitation_id/remove
+
+## matches
+
+- /api/matches/
+- /api/matches/:id
+- /api/matches/:id/remove
+
+## meetings
+
+### /api/meetings/
+
+#### GET ROUTE /api/meetings/
+
+should return status 200 on success
+should return an empty array
+should return an array with length of 1
+
+#### POST ROUTE /api/meetings/
+
+should return status 201 on success (without notes)
+should return status 201 on success (without rating)
+should return status 201 on success (without notes and rating)
+should return a message on success
+should return a message on success (without notes)
+should return a message on success (without rating)
+should return a message on success (without notes and ratings
+should return status 400 on fail (no match id)
+should return status 400 on fail (no meeting date)
+should return status 400 on fail (no location)
+should return error on fail (no match id)
+should return error on fail (no meeting date)
+should return error on fail (no location)
+
+### /api/meetings/:id
+
+#### GET ROUTE /api/meetings/:id
+
+should return status 200 on success
+should return specified meeting
+should return status 404 if no such meeting
+should return error if no such meeting
+
+#### PUT ROUTE /api/meetings/:id
+
+should return status 200 on success
+should return message on success
+
+#### DELETE ROUTE /api/meetings/:id
+
+should return status 200 on success
+should return message on success
+
+### /api/meetings/:id/remove
+
+#### DELETE ROUTE /api/meetings/:id/remove
+
+should return status 200 on success
+
+## menteeProfiles
+
+### /api/mentees/
+
+#### GET ROUTE /api/mentees/
+
+should return status 200 on success
+should return an empty array
+should return an array with length of 1
+
+#### POST /api/mentees/
+
+should return status 201 on success
+should return status 201 without interests
+should return status 201 without desired zip
+should return status 201 without application answers
+should return message on success
+should return message on success without interests
+should return message on success without desired zip
+should return message on success without application answers
+should return status 404 on fail without lambda_week
+should return error on fail without lambda week
+
+### /api/mentees/:id
+
+#### GET ROUTE /api/mentees/:id
+
+should return status 200 on success
+should return specified mentee
+should return status 404 if no such meeting
+should return error if no such meeting
+
+#### PUT ROUTE /api/mentees/:id
+
+should return 200 on success
+should return message on success
+
+#### DELETE /api/mentees/:id
+
+should return status 200 on success
+should return message on success
+
+### /api/mentees/:id/remove
+
+#### DELETE ROUTE /api/mentees/:id/remove
+
+UNDEF
+
+## mentorProfiles
+
+### /api/mentors/
+
+#### GET ROUTE /api/mentors/
+
+should return status 200 on success
+
+#### POST ROUTE /api/mentors/
+
+### /api/mentors/:id
+
+#### GET ROUTE /api/mentors/:id
+
+#### PUT ROUTE /api/mentors/:id
+
+#### DELETE ROUTE /api/mentors/:id
+
+### /api/mentors/:id/remove
+
+UNDEF
+
+## notifications
+
+### /api/notifications/
+
+#### GET ROUTE /api/notifications/
+
+should return 200 on success
+should return empty array if there are no notifications
+
+#### POST ROUTE /api/notifications/
+
+should return 200 on success
+should return message on success
+should return error if notification has no content
+
+### /api/notifications/:id
+
+#### GET ROUTE /api/notifications/:id
+
+should return 200 on success
+should return 400 on failed fetch
+
+#### PUT ROUTE /api/notifications/:id
+
+should return 200 on success
+should return message on success
+
+#### PATCH ROUTE /api/notifications/:id
+
+should return 200 on success
+should return message on success
+
+#### DELETE ROUTE /api/notifications/:id
+
+should return 200 on success
+
+### /api/notifications/:id/remove
+
+#### DELETE ROUTE /api/notifications/:id/remove
+
+UNDEF
+
+## organizations
+
+### /api/organizations/
+
+#### GET ROUTE /api/organizations/
+
+should return 200 on success; should return an object (organizations)
+should return 500 on fail (cannot access database)
+
+#### POST ROUTE /api/organizations/
+
+should return 201 on success
+should return the new Org on success
+should return 400 on fail (no org name)
+should return 500 on db access fail
+
+### /api/organizations/:id
+
+#### GET ROUTE /api/organizations/:id
+
+should return 200 on success
+should return 404 on fail (org does not exist)
+
+#### PUT ROUTE /api/organizations/:id
+
+should return 200 on success
+should return the org on success
+
+### /api/organizations/:id/remove
+
+#### DELETE ROUTE /api/organizations/:id/remove
+
+should return 404 on fail
+should return 500 on database error
+
+## users
+
+### /api/users/:id
+
+#### GET ROUTE /api/users/:id
+
+should return 200 on success
+should return an array on success
+should return 403 on fail (not authorized)
+
+#### PUT ROUTE /api/users/:id
+
+should return 200 on success
+should return a message on success
+should return 401 on fail (no token provided)
+should return an error on fail (no token provided)
+should return 404 on fail (user not found)
+should return an error on fail (user not found)
+
+#### DELETE ROUTE /api/users/:id
+
+should return 200 on 
+should return a message on success
+should return 401 on fail (no token provided
+should return an error on fail (no token provided
+should return 404 on fail (user not found
+should return an error on fail (user not found)
+
+### /api/users/:id/remove
+
+#### DELETE ROUTE /api/users/:id/remove
+
+should return 200 on success
+should return a message on success
+should return 401 on fail (no token provided)
+should return an error on fail (no token provided)
+should return 404 on fail (user not found)
+should return an error on fail (user not found)
+should return 403 on fail (wrong role)
+should return an error on fail (wrong role)
+
+### /api/users/current_user
+
+#### GET ROUTE /api/users/current_user
+
+should return 200 on success
+should return an object on success
+should return 401 on fail (no token provided)
+should return an error on fail (no token provided)
+should return 404 on fail (user not found)
+should return an error on fail (user not found)
+
